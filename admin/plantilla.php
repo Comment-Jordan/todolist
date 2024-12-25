@@ -118,6 +118,12 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- -------------------------------------------------------------------------- -->    
         <script src="utils/fetchFunctions.js"></script>    
         <script src="js/usuarios.js"></script>
+        <script src="js/tarea.js"></script>
+        
+        <!-- -------------------------------------------------------------------------- -->
+        <!--                                COMPONENTS JS                               -->
+        <!-- -------------------------------------------------------------------------- -->    
+        <script src="admin/components/tarea.template.js"></script>
     </body>
 
 </html>
