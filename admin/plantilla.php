@@ -25,6 +25,12 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- Enlace al CSS de Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         
+        <!-- SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">        
+
+        <!-- Enlace al archivo de estilo de Toastify -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        
         <!-- -------------------------------------------------------------------------- -->
         <!--                               CSS DE MODULOS                               -->
         <!-- -------------------------------------------------------------------------- -->
@@ -37,10 +43,14 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- Enlace al JS de Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+        <!-- SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
+        <!-- Enlace al archivo JavaScript de Toastify -->
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     </head>
 

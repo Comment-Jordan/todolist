@@ -25,8 +25,8 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" id="closeModalBtn" class="btn btn-primary">Cerrar</button>
-            <button type="button" class="btn btn-primary" onclick="agregarTarea()">Guardar</button>
+            <button id="closeModalBtn" type="button" class="btn btn-primary">Cerrar</button>
+            <button id="guardarModalBtn" type="button" class="btn btn-primary" onclick="agregarTarea()">Guardar</button>
         </div>
     </dialog>
 </div>
@@ -39,6 +39,7 @@
 
         const openModalBtn = document.getElementById('openModalBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
+        const guardarModalBtn = document.getElementById('guardarModalBtn');
                 
 
         openModalBtn.addEventListener('click', () => {
@@ -46,6 +47,10 @@
         });
 
         closeModalBtn.addEventListener('click', () => {
+            newTaskModal.close();
+        });
+
+        guardarModalBtn.addEventListener('click', () => {
             newTaskModal.close();
         });
     });

@@ -133,10 +133,12 @@ class AjaxTarea
             $tarea = new TareaController();
             $agregarTarea = $tarea->ctrAddTarea($_POST["titulo"], $_POST["descripcion"], $_SESSION["id"]);
             
-            if($agregarTarea==true){
+            if($agregarTarea>0){
+                $consultaTarea = $tarea->ctrGetTareaById($agregarTarea);
                 $respuesta = array(
                     "success" => true,
-                    "msg" => "Tarea agregada"
+                    "msg" => "Tarea agregada",
+                    "data" => $consultaTarea
                 );            
             }
             else{

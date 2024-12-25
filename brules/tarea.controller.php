@@ -33,4 +33,9 @@ class TareaController
     {
         return TareaModel::mdlAddTarea($titulo, $descripcion, $usuarioId);
     }
+
+    public static function ctrGetTareaById($id)
+    {
+        return TareaModel::mdlGetTareaById($id);
+    }
 }

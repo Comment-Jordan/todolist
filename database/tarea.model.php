@@ -78,7 +78,8 @@ class TareaModel
 
     public static function mdlAddTarea($titulo, $descripcion, $usuarioId)
     {
-        $stmt = Conexion::conectar()->prepare(
+        $pdo = Conexion::conectar();
+        $stmt = $pdo->prepare(
             "INSERT INTO tarea (titulo, descripcion, usuarioId)
             VALUES (:titulo, :descripcion, :usuarioId)"
         );
@@ -87,7 +88,30 @@ class TareaModel
         $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
         $stmt->bindParam(":usuarioId", $usuarioId, PDO::PARAM_INT);
 
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            return $pdo->lastInsertId(); // Retorna el ID insertado
+        } else {
+            return false;
+        }
+
+        //$stmt->close();
+
+        $stmt = null;
+    }
+
+    public static function mdlGetTareaById($id)
+    {
+        $stmt = Conexion::conectar()->prepare(
+            "SELECT *
+            FROM tarea
+            WHERE id_tarea = :tareaId"
+        );
+
+        $stmt->bindParam(":tareaId", $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetch();
 
         //$stmt->close();
 
