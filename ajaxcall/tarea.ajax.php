@@ -13,6 +13,10 @@ switch ($_GET["funct"]) {
         $ajaxTarea->getTareasByUserId();
     break;
 
+    case 'updateCampoTarea':
+        $ajaxTarea->updateCampoTarea();
+    break;
+
     default:
         echo "Ajax call not found";
     break;
@@ -35,6 +39,35 @@ class AjaxTarea
             $respuesta = array(
                 "success" => false,
                 "msg" => "No se ha iniciado sesión"
+            );
+        }
+
+        echo json_encode($respuesta);
+    }
+
+    public static function updateCampoTarea(){
+        if(isset($_GET["identificador"]) && isset($_GET["campoIdentificador"]) && isset($_GET["valor"]) && isset($_GET["campoValor"])){
+            $tarea = new TareaController();
+            $updateCampo = $tarea->ctrUpdateCampoTarea($_GET["identificador"], $_GET["campoIdentificador"], $_GET["valor"], $_GET["campoValor"]);
+            
+            if($updateCampo==true){
+                $respuesta = array(
+                    "success" => true,
+                    "msg" => "Update realizado"
+                );            
+            }
+            else{
+                $respuesta = array(
+                    "success" => false,
+                    "msg" => "Error en el update"
+                );
+            }
+            
+        }
+        else{
+            $respuesta = array(
+                "success" => false,
+                "msg" => "Faltan datos"
             );
         }
 

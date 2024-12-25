@@ -72,11 +72,12 @@ const putFetchData = (url_api, headers, data) => {
         controller.abort(); // Abort the request
     }, 60000); // Set timeout to 60 seconds
 
+    const queryParams = new URLSearchParams(data).toString(); // Convert data to query parameters
+
     return new Promise((resolve, reject) => {
-        fetch(url_api, {
+        fetch(`${url_api}&${queryParams}`, { // Append query parameters to URL
         method: "PUT",
         headers: headers,
-        body: data,
         signal: controller.signal, // Pass the controller to the request
         })
         .then((res) => {

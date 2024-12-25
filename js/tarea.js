@@ -6,10 +6,37 @@ async function consultarTareas() {
 
     if (tareas.success) {
         tareas.data.forEach( tarea => {
-            tareaCardTemplate(tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards");        
+            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards");        
         });
     }
     else {
         alert(tareas.msg);
     }
+}
+
+async function alternarTareaActiva(id, isActive) {
+
+    // const isActive = $(`checkTareaActiva_${id}`).is(':checked')
+
+    let datosUpdate = {
+        identificador: id,
+        campoIdentificador: "id_tarea",
+        valor: isActive,
+        campoValor: "is_activo"
+    };
+
+    let update = await putFetchData("ajaxcall/tarea.ajax.php?funct=updateCampoTarea",
+        [], datosUpdate
+    );
+    
+    if (update.success) {
+        alert(update.msg);
+        let card = document.getElementById(`tarea_${id}`);
+        card.remove();
+    }
+    else
+    {
+        alert(update.msg);
+    }
+
 }
