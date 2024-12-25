@@ -76,4 +76,21 @@ class TareaModel
         $stmt = null;
     }
 
+    public static function mdlAddTarea($titulo, $descripcion, $usuarioId)
+    {
+        $stmt = Conexion::conectar()->prepare(
+            "INSERT INTO tarea (titulo, descripcion, usuarioId)
+            VALUES (:titulo, :descripcion, :usuarioId)"
+        );
+
+        $stmt->bindParam(":titulo", $titulo, PDO::PARAM_STR);
+        $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+        $stmt->bindParam(":usuarioId", $usuarioId, PDO::PARAM_INT);
+
+        return $stmt->execute();
+
+        //$stmt->close();
+
+        $stmt = null;
+    }
 }

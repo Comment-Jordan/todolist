@@ -29,4 +29,8 @@ class TareaController
         return TareaModel::mdlUpdateCampoTarea($identificador, $campoIdentificador, $valor, $campoValor);
     }
 
+    public static function ctrAddTarea($titulo, $descripcion, $usuarioId)
+    {
+        return TareaModel::mdlAddTarea($titulo, $descripcion, $usuarioId);
+    }
 }

@@ -71,3 +71,23 @@ async function alternarTareaActiva(id, isActive) {
     }
 
 }
+
+async function agregarTarea(){
+
+    let datosTarea = new FormData();
+    datosTarea.append("titulo", $("#titulo").val());
+    datosTarea.append("descripcion", $("#descripcion").val());
+
+
+    let tarea = await postFetchData("ajaxcall/tarea.ajax.php?funct=postAgregarTarea",
+        [], datosTarea
+    );
+
+    if (tarea.success) {
+        // tareaCardTemplate(tarea.data.id_tarea, tarea.data.titulo, tarea.data.descripcion, tarea.data.is_completed, tarea.data.is_activo, "cards");
+        alert("Tarea agregada correctamente");
+    }
+    else {
+        alert(tarea.msg);
+    }
+}

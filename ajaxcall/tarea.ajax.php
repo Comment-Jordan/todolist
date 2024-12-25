@@ -25,6 +25,10 @@ switch ($_GET["funct"]) {
         $ajaxTarea->getAllTareasByUserId();
     break;
 
+    case 'postAgregarTarea':
+        $ajaxTarea->postAgregarTarea();
+    break;
+
     default:
         echo "Ajax call not found";
     break;
@@ -110,6 +114,35 @@ class AjaxTarea
                 $respuesta = array(
                     "success" => false,
                     "msg" => "Error en el update"
+                );
+            }
+            
+        }
+        else{
+            $respuesta = array(
+                "success" => false,
+                "msg" => "Faltan datos"
+            );
+        }
+
+        echo json_encode($respuesta);
+    }
+
+    public static function postAgregarTarea(){
+        if(isset($_POST["titulo"]) && isset($_POST["descripcion"])){
+            $tarea = new TareaController();
+            $agregarTarea = $tarea->ctrAddTarea($_POST["titulo"], $_POST["descripcion"], $_SESSION["id"]);
+            
+            if($agregarTarea==true){
+                $respuesta = array(
+                    "success" => true,
+                    "msg" => "Tarea agregada"
+                );            
+            }
+            else{
+                $respuesta = array(
+                    "success" => false,
+                    "msg" => "Error al agregar tarea"
                 );
             }
             
