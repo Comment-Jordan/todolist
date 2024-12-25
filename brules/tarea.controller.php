@@ -10,6 +10,13 @@ class TareaController
         return $respuesta;
     }
 
+    public static function ctrGetAllTareasByUserId($usuarioId)
+    {        
+        $respuesta = TareaModel::mdlGetAllTareasByUserId($usuarioId);
+
+        return $respuesta;
+    }
+
     public static function ctrGetPapeleraByUserId($usuarioId)
     {        
         $respuesta = TareaModel::mdlGetAPapeleraByUserId($usuarioId);

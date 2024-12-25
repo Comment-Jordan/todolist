@@ -13,6 +13,21 @@ async function consultarTareas() {
         alert(tareas.msg);
     }
 }
+async function consultarTodasTareas() {
+    let tareas = await getFetchData(
+        "ajaxcall/tarea.ajax.php?funct=getAllTareasByUserId",
+        [], 
+    );
+
+    if (tareas.success) {
+        tareas.data.forEach( tarea => {
+            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards");        
+        });
+    }
+    else {
+        alert(tareas.msg);
+    }
+}
 
 async function consultarPapelera(params) {
     let tareas = await getFetchData(

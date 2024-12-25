@@ -23,6 +23,25 @@ class TareaModel
         $stmt = null;
     }
 
+    public static function mdlGetAllTareasByUserId($usuarioId)
+    {
+        $stmt = Conexion::conectar()->prepare(
+            "SELECT *
+            FROM tarea
+            WHERE usuarioId = :usuarioId AND is_activo = 1"
+        );
+
+        $stmt->bindParam(":usuarioId", $usuarioId, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+
+        //$stmt->close();
+
+        $stmt = null;
+    }
+
     public static function mdlGetAPapeleraByUserId($usuarioId)
     {
         $stmt = Conexion::conectar()->prepare(

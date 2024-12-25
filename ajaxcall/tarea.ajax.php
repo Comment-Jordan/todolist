@@ -21,6 +21,10 @@ switch ($_GET["funct"]) {
         $ajaxTarea->getPapeleraByUserId();
     break;
 
+    case 'getAllTareasByUserId':
+        $ajaxTarea->getAllTareasByUserId();
+    break;
+
     default:
         echo "Ajax call not found";
     break;
@@ -32,6 +36,27 @@ class AjaxTarea
         if(isset($_SESSION["usuario"])){
             $tarea = new TareaController();
             $consultaTareas = $tarea->ctrGetAllTareasPendientesByUserId($_SESSION["id"]);
+            
+            $respuesta = array(
+                "success" => true,
+                "msg" => "Tareas consultadas",
+                "data" => $consultaTareas
+            );            
+        }
+        else{
+            $respuesta = array(
+                "success" => false,
+                "msg" => "No se ha iniciado sesión"
+            );
+        }
+
+        echo json_encode($respuesta);
+    }
+
+    public static function getAllTareasByUserId(){
+        if(isset($_SESSION["usuario"])){
+            $tarea = new TareaController();
+            $consultaTareas = $tarea->ctrGetAllTareasByUserId($_SESSION["id"]);
             
             $respuesta = array(
                 "success" => true,
