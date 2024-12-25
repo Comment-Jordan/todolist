@@ -1,6 +1,7 @@
 <?php
-
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 //NOTA: Al no mostrar errores en el navegador si llega a ocurrir un error saldra una pantalla que dice no funciona esta pagina 
 ini_set("display_errors", 1); // 0 no muestra errores en el navegador, 1 si los muestra

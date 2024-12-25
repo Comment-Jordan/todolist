@@ -1,3 +1,8 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -46,8 +51,7 @@
     <body class="hold-transition sidebar-collapse sidebar-mini <?php echo (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") ? "" : "login-page" ?>">
 
 
-        <?php
-
+        <?php            
             if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
 
                 echo '<div class="wrapper">';                
@@ -68,27 +72,31 @@
                 /*                                  CONTENIDO                                 */
                 /* -------------------------------------------------------------------------- */
 
-                $rutas = array();
+                echo '<div class="main-content">';
 
-                if (isset($_GET["ruta"])) {
+                    $rutas = array();                    
 
-                    $rutas = explode("/", $_GET["ruta"]);
+                    if (isset($_GET["ruta"])) {
 
-                    if (
-                        $rutas[0] == "home" ||
-                    
+                        $rutas = explode("/", $_GET["ruta"]);
+                        
+                        if (
+                            $rutas[0] == "home" ||
+                        
 
-                        $rutas[0] == "salir"
-                    ){
-                        include "modulos/" . $rutas[0] . ".php";                        
-                    } 
-                    else {
-                        include "modulos/404.php";
+                            $rutas[0] == "salir"
+                        ){
+                            include "modulos/" . $rutas[0] . ".php";                        
+                        } 
+                        else {
+                            include "modulos/404.php";
+                        }
                     }
-                }
-                else {
-                    include "modulos/home.php";
-                }
+                    else {
+                        include "modulos/home.php";
+                    }
+
+                echo '</div>';
 
                 /* -------------------------------------------------------------------------- */
                 /*                                   FOOTER                                   */
@@ -97,7 +105,7 @@
                 include "modulos/footer.php";
                 
 
-                echo '</div>';
+                echo '</div>';                
             }
             else {
                 include "modulos/login.php";

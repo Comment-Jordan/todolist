@@ -12,8 +12,7 @@ async function iniciarSesion() {
     );
 
     if (login.success) {
-        console.log("Login exitoso!!");
-        // location.href = "inicio";
+        location.href = "home";
     } else {
         alert(login.msg);
     }
