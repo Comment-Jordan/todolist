@@ -4,12 +4,31 @@ require_once(__DIR__ . '/../common/config.php');
 
 class TareaModel
 {
-    public static function mdlGetAllTareaById($usuarioId)
+    public static function mdlGetAllTareasPendientesByUserId($usuarioId)
     {
         $stmt = Conexion::conectar()->prepare(
             "SELECT *
             FROM tarea
-            WHERE usuarioId = :usuarioId"
+            WHERE usuarioId = :usuarioId AND is_completed = 0 AND is_activo = 1"
+        );
+
+        $stmt->bindParam(":usuarioId", $usuarioId, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+
+        //$stmt->close();
+
+        $stmt = null;
+    }
+
+    public static function mdlGetAPapeleraByUserId($usuarioId)
+    {
+        $stmt = Conexion::conectar()->prepare(
+            "SELECT *
+            FROM tarea
+            WHERE usuarioId = :usuarioId AND is_activo = 0"
         );
 
         $stmt->bindParam(":usuarioId", $usuarioId, PDO::PARAM_INT);

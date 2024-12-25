@@ -29,7 +29,7 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
                     Marcar como ${isCompleted ? "Inactivo" : "Activo"}
                 </label>
                 </div>
-                <button class="btn btn-danger btn-delete mt-3" onClick='alternarTareaActiva(${id}, 0)'>Eliminar</button>
+                <button class="btn btn-danger btn-delete mt-3" onClick='alternarTareaActiva(${id}, 0)'>Mover a la papelera</button>
             </div>
             </div>
         </div>

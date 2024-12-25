@@ -1,9 +1,25 @@
 async function consultarTareas() {
     let tareas = await getFetchData(
-        "ajaxcall/tarea.ajax.php?funct=getTareasByUserId",
+        "ajaxcall/tarea.ajax.php?funct=getTareasPendientesByUserId",
         [], 
     );
 
+    if (tareas.success) {
+        tareas.data.forEach( tarea => {
+            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards");        
+        });
+    }
+    else {
+        alert(tareas.msg);
+    }
+}
+
+async function consultarPapelera(params) {
+    let tareas = await getFetchData(
+        "ajaxcall/tarea.ajax.php?funct=getPapeleraByUserId",
+        [], 
+    );
+    
     if (tareas.success) {
         tareas.data.forEach( tarea => {
             tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards");        

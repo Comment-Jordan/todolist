@@ -82,6 +82,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         
                         if (
                             $rutas[0] == "home" ||
+                            $rutas[0] == "papelera" ||
                         
 
                             $rutas[0] == "salir"

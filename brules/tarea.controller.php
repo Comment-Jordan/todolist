@@ -3,9 +3,16 @@ require_once "../database/tarea.model.php";
 
 class TareaController
 {
-    public static function ctrGetAllTareaById($usuarioId)
+    public static function ctrGetAllTareasPendientesByUserId($usuarioId)
     {        
-        $respuesta = TareaModel::mdlGetAllTareaById($usuarioId);
+        $respuesta = TareaModel::mdlGetAllTareasPendientesByUserId($usuarioId);
+
+        return $respuesta;
+    }
+
+    public static function ctrGetPapeleraByUserId($usuarioId)
+    {        
+        $respuesta = TareaModel::mdlGetAPapeleraByUserId($usuarioId);
 
         return $respuesta;
     }
