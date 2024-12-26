@@ -6,7 +6,7 @@ async function consultarTareas() {
 
     if (tareas.success) {
         tareas.data.forEach( tarea => {
-            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards");        
+            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards", tarea.fecha_creacion, tarea.fecha_actualizacion);        
         });
     }
     else {
@@ -21,7 +21,7 @@ async function consultarTodasTareas() {
 
     if (tareas.success) {
         tareas.data.forEach( tarea => {
-            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards");        
+            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards", tarea.fecha_creacion, tarea.fecha_actualizacion);        
         });
     }
     else {
@@ -37,7 +37,7 @@ async function consultarPapelera(params) {
     
     if (tareas.success) {
         tareas.data.forEach( tarea => {
-            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards");        
+            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards", tarea.fecha_creacion, tarea.fecha_actualizacion);        
         });
     }
     else {
@@ -103,7 +103,7 @@ async function agregarTarea(){
     );
 
     if (tarea.success) {
-        tareaCardTemplate(tarea.data.id_tarea, tarea.data.titulo, tarea.data.descripcion, tarea.data.is_completed, tarea.data.is_activo, "cards");
+        tareaCardTemplate(tarea.data.id_tarea, tarea.data.titulo, tarea.data.descripcion, tarea.data.is_completed, tarea.data.is_activo, "cards", tarea.data.fecha_creacion, tarea.data.fecha_actualizacion);
         Toastify({
             text: "Tarea agregada",
             duration: 3000,
@@ -206,6 +206,7 @@ async function editarTarea(){
 
         $("#idTituloTarea_" + datosTarea.id_tarea).text(datosTarea.titulo);
         $("#idDescripcionTarea_" + datosTarea.id_tarea).text(datosTarea.descripcion);
+        $("#idFechaActualizacionTarea_" + datosTarea.id_tarea).text(`Actualizacion${tarea.data.fecha_actualizacion}`);
     }
     else {
         Toastify({

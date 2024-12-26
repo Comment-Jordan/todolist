@@ -1,8 +1,9 @@
 <div class="main-content">
     <!-- Home page content goes here -->
-    <h1>Tareas pendientes
-        <button type="button" class="btn btn-primary" id="openModalBtn">Nueva Tarea</button>
-    </h1>    
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Tareas pendientes</h1>    
+         <button type="button" class="btn btn-primary" id="openModalBtn">Nueva Tarea</button>
+    </div>
 
     <div id="cards">
         <!-- Cards go here -->

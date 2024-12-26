@@ -1,4 +1,4 @@
-function tareaCardTemplate(id, title, description, isCompleted = false, isActive = true, contenedor) {
+function tareaCardTemplate(id, title, description, isCompleted = false, isActive = true, contenedor, fechaCreacion="", fechaActualizacion="") { 
     const cardClass = isCompleted ? "bg-success text-white" : "bg-primary text-white";
     const badgeText = isCompleted ? "Terminada" : "Pendiente";
     const badgeClass = isCompleted ? "badge bg-success" : "badge bg-danger";
@@ -13,6 +13,8 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
             <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
                 <p id='idTituloTarea_${id}'>${title}</p>
+                <small>Creacion: ${fechaCreacion}</small>
+                <small id='idFechaActualizacionTarea_${id}'>Actualizacion: ${fechaActualizacion}</small>
                 <span class="badge ${badgeClass}">${badgeText}</span>
             </div>
             </div>
@@ -26,12 +28,14 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
                 <div class="form-check">
                 <input id='checkTareaActiva_${id}' type="checkbox" class="form-check-input toggle-active" ${isCompleted ? "checked" : ""}>
                 <label class="form-check-label">
-                    Marcar como ${isCompleted ? "Inactivo" : "Activo"}
+                    Tarea finalizada
                 </label>
                 </div>
-                <button class="btn btn-danger btn-delete mt-3" onClick='alternarTareaActiva(${id}, 0)'>Mover a la papelera</button>
+                <div class="d-flex justify-content-between gap-3">
                 <button class="btn btn-danger btn-delete mt-3" onClick='eliminarTarea(${id})'>Eliminar</button>
-                <button class="btn btn-danger btn-delete mt-3" onClick='abrirDialogoEditar(${id})'>Editar</button>
+                    <button class="btn btn-warning btn-delete mt-3" onClick='alternarTareaActiva(${id}, 0)'>Mover a la papelera</button>
+                    <button class="btn btn-success btn-delete mt-3" onClick='abrirDialogoEditar(${id})'>Editar</button>
+                </div>
             </div>
             </div>
         </div>
@@ -45,7 +49,7 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
       const active = checkbox.checked;
       badge.className = `badge ${active ? "bg-success" : "bg-danger"}`;
       badge.textContent = active ? "Terminada" : "Pendiente";
-      checkbox.nextElementSibling.textContent = `Marcar como ${active ? "Inactivo" : "Activo"}`;
+      //   checkbox.nextElementSibling.textContent = `Marcar como ${active ? "Inactivo" : "Activo"}`;
 
       const checkValorIsCompleted = $(`#checkTareaActiva_${id}`).is(':checked')
 
