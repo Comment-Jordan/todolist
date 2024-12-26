@@ -29,6 +29,10 @@ switch ($_GET["funct"]) {
         $ajaxTarea->postAgregarTarea();
     break;
 
+    case 'deleteTarea':
+        $ajaxTarea->deleteTarea();
+    break;
+
     default:
         echo "Ajax call not found";
     break;
@@ -145,6 +149,36 @@ class AjaxTarea
                 $respuesta = array(
                     "success" => false,
                     "msg" => "Error al agregar tarea"
+                );
+            }
+            
+        }
+        else{
+            $respuesta = array(
+                "success" => false,
+                "msg" => "Faltan datos"
+            );
+        }
+
+        echo json_encode($respuesta);
+    }
+
+    public static function deleteTarea(){        
+        $input = json_decode(file_get_contents('php://input'), true); // Decode JSON input
+        if(isset($input["id_tarea"])){
+            $tarea = new TareaController();
+            $deleteTarea = $tarea->ctrDeleteTarea($input["id_tarea"]);
+            
+            if($deleteTarea==true){
+                $respuesta = array(
+                    "success" => true,
+                    "msg" => "Tarea eliminada"
+                );            
+            }
+            else{
+                $respuesta = array(
+                    "success" => false,
+                    "msg" => "Error al eliminar tarea"
                 );
             }
             

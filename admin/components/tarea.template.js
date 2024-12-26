@@ -30,6 +30,7 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
                 </label>
                 </div>
                 <button class="btn btn-danger btn-delete mt-3" onClick='alternarTareaActiva(${id}, 0)'>Mover a la papelera</button>
+                <button class="btn btn-danger btn-delete mt-3" onClick='eliminarTarea(${id})'>Eliminar</button>
             </div>
             </div>
         </div>

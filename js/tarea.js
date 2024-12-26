@@ -118,3 +118,54 @@ async function agregarTarea(){
         alert(tarea.msg);
     }
 }
+
+async function eliminarTarea(id){
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "No podrás deshacer esta acción.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, borrar',
+        cancelButtonText: 'Cancelar'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            let datosTarea = { id_tarea: id }; // Use an object instead of FormData
+
+            // Acción cuando el usuario confirma
+            let tarea = await deleteFetchData("ajaxcall/tarea.ajax.php?funct=deleteTarea",
+                { 'Content-Type': 'application/json' }, datosTarea // Set headers for JSON
+            );
+        
+            if (tarea.success) {
+                let card = document.getElementById(`tarea_${id}`);
+                card.classList.add('hide'); // Añade la clase para animar        
+                setTimeout(() => {
+                  card.remove();
+                }, 500);
+        
+                Toastify({
+                    text: "Tarea eliminada",
+                    duration: 3000,
+                    gravity: "top", // Posición: "top" o "bottom"
+                    position: "right", // Posición: "left", "center" o "right"
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)", // Gradiente de color
+                    stopOnFocus: true, // Detiene la animación cuando se pasa el mouse sobre la notificación
+                    close: true, // Mostrar botón de cierre
+                }).showToast();
+            }
+            else{
+                Toastify({
+                    text: "Hubo un error al borrar la tarea.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc3a0)", // Gradiente de color
+                    stopOnFocus: true,
+                    close: true,
+                }).showToast();                
+            }
+        }
+    });
+}

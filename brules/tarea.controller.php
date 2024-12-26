@@ -38,4 +38,9 @@ class TareaController
     {
         return TareaModel::mdlGetTareaById($id);
     }
+
+    public static function ctrDeleteTarea($id)
+    {
+        return TareaModel::mdlDeleteTarea($id);
+    }
 }

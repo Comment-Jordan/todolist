@@ -89,3 +89,34 @@ const putFetchData = (url_api, headers, data) => {
         });
     });
 };
+
+/**
+ * DELETE request
+ * @param {url request} url_api
+ * @param {headers request} headers
+ * @param {data request} data
+ * @returns json formmat
+*/
+const deleteFetchData = (url_api, headers, data) => {
+    let controller = new AbortController(); // Create a new controller to abort the request
+
+    let timeout = setTimeout(() => {
+        controller.abort(); // Abort the request
+    }, 60000); // Set timeout to 60 seconds
+
+    return new Promise((resolve, reject) => {
+        fetch(url_api, {
+        method: "DELETE",
+        headers: headers,
+        body: JSON.stringify(data), // Add body to the request
+        signal: controller.signal, // Pass the controller to the request
+        })
+        .then((res) => {
+            resolve(res.json());
+        })
+        .catch((err) => {
+            console.error("Error DELETE", err);
+            reject(new Error(`Request delete error: ${err}`));
+        });
+    });
+};

@@ -117,4 +117,20 @@ class TareaModel
 
         $stmt = null;
     }
+
+    public static function mdlDeleteTarea($id)
+    {
+        $stmt = Conexion::conectar()->prepare(
+            "DELETE FROM tarea
+            WHERE id_tarea = :id_tarea"
+        );
+
+        $stmt->bindParam(":id_tarea", $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+
+        //$stmt->close();
+
+        $stmt = null;
+    }   
 }
