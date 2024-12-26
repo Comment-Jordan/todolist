@@ -144,3 +144,21 @@ dialog::backdrop {
     transform: translateY(-20px); /* Puedes cambiar esto para otros efectos */
 }
   
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    flex: 1;
+}
+.main-content {
+    flex: 1;
+}
+footer {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: center;
+}

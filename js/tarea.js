@@ -5,9 +5,20 @@ async function consultarTareas() {
     );
 
     if (tareas.success) {
-        tareas.data.forEach( tarea => {
-            tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards", tarea.fecha_creacion, tarea.fecha_actualizacion);        
-        });
+        if(tareas.data.length > 0){
+            tareas.data.forEach( tarea => {
+                tareaCardTemplate(tarea.id_tarea, tarea.titulo, tarea.descripcion, tarea.is_completed, tarea.is_activo, "cards", tarea.fecha_creacion, tarea.fecha_actualizacion);        
+            });
+        }
+        // else {
+        //     document.getElementById("cards").innerHTML = `
+        //         <h3 id="sinTareasPendientes" class="text-center mt-5" style="font-family: 'Arial', sans-serif; font-weight: bold; color: #ffcc00; 
+        //         background-color: #343a40; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        //         <i class="fas fa-search"></i> <span style="font-style: italic;">Nada por aquí...</span> <i class="fas fa-eye-slash"></i><br>
+        //         Parece que todo está en orden, ¡pero no te relajes mucho! 👀
+        //         </h3>
+        //     `;
+        // }
     }
     else {
         alert(tareas.msg);
@@ -112,7 +123,7 @@ async function agregarTarea(){
             backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)", // Gradiente de color
             stopOnFocus: true, // Detiene la animación cuando se pasa el mouse sobre la notificación
             close: true, // Mostrar botón de cierre
-        }).showToast();
+        }).showToast();        
     }
     else {
         Toastify({

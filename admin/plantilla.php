@@ -30,12 +30,14 @@ if (session_status() == PHP_SESSION_NONE) {
 
         <!-- Enlace al archivo de estilo de Toastify -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         
         <!-- -------------------------------------------------------------------------- -->
         <!--                               CSS DE MODULOS                               -->
         <!-- -------------------------------------------------------------------------- -->
-        <link rel="stylesheet" href="css/styles.css">
-
+        <link rel="stylesheet" href="css/styles.css">        
 
         <!-- -------------------------------------------------------------------------- -->
         <!--                            PLUGINS DE JAVASCRIPT                           -->
@@ -109,15 +111,12 @@ if (session_status() == PHP_SESSION_NONE) {
                     }
 
                 echo '</div>';
-
+                echo '</div>';
                 /* -------------------------------------------------------------------------- */
                 /*                                   FOOTER                                   */
                 /* -------------------------------------------------------------------------- */
 
                 include "modulos/footer.php";
-                
-
-                echo '</div>';                
             }
             else {
                 include "modulos/login.php";

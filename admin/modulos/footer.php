@@ -1,10 +1,19 @@
 <footer class="main-footer bg-dark text-white py-3">
-    <div class="container d-flex justify-content-between align-items-center">
+    <div class="container text-center">
         <div>
-            <p class="mb-0">&copy; 2024 TodoList. Todos los derechos reservados.</p>
+            <p class="mb-0">2024 TodoList</p>
+            <p class="mb-0">&copy;Jordan P&eacute;rez Bravo</p>
         </div>
-        <div class="float-right d-none d-sm-block">
-            <b>Versión:</b> 1.0
+        <div class="mt-2">
+            <a href="https://github.com/Comment-Jordan" target="_blank" class="mx-2">
+                <i class="fab fa-github"></i> GitHub personal
+            </a>
+            <a href="https://github.com/JordanFrame" target="_blank" class="mx-2">
+                <i class="fab fa-github"></i> GitHub profesional
+            </a>
+            <a href="https://www.linkedin.com/in/jordan-p%C3%A9rez-bravo-556bba304/" target="_blank" class="mx-2">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
         </div>
     </div>
 </footer>

@@ -1,5 +1,10 @@
-<header class="main-header bg-primary text-white py-3">
-    <div class="container text-center">
-        <h1 class="h4 mb-0">Mi Aplicación</h1>
+<header class="main-header bg-secondary text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <!-- Puedes dejar este espacio vacío o incluir un logo -->
+        </div>
+        <h1 class="h5 mb-0">
+            Usuario: <?php echo $_SESSION["usuario"]; ?>
+        </h1>
     </div>
 </header>

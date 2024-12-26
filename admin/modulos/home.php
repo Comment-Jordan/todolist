@@ -50,9 +50,7 @@
 </dialog>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        console.log("El DOM está listo");
-
+    document.addEventListener("DOMContentLoaded", function() {        
         consultarTareas();
 
         const openModalBtn = document.getElementById('openModalBtn');
