@@ -66,9 +66,5 @@
         closeModalBtn.addEventListener('click', () => {
             newTaskModal.close();
         });
-
-        guardarModalBtn.addEventListener('click', () => {
-            newTaskModal.close();
-        });
     });
 </script>

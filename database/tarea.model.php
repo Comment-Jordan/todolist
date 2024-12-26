@@ -63,10 +63,10 @@ class TareaModel
     
     public static function mdlUpdateCampoTarea($identificador, $campoIdentificador, $valor, $campoValor)
     {
-        $sql = "UPDATE tarea SET $campoValor = :valor WHERE $campoIdentificador = :identificador";
+        $sql = "UPDATE tarea SET $campoValor = $valor WHERE $campoIdentificador = :identificador";
         $stmt = Conexion::conectar()->prepare($sql);
 
-        $stmt->bindParam(":valor", $valor, PDO::PARAM_STR);
+        // $stmt->bindParam(":valor", $valor, PDO::PARAM_STR);
         $stmt->bindParam(":identificador", $identificador, PDO::PARAM_INT);
 
         return $stmt->execute();

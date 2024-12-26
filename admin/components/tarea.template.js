@@ -1,7 +1,7 @@
 function tareaCardTemplate(id, title, description, isCompleted = false, isActive = true, contenedor) {
     const cardClass = isCompleted ? "bg-success text-white" : "bg-primary text-white";
-    const badgeClass = isActive ? "badge bg-success" : "badge bg-danger";
-    const badgeText = isActive ? "Pendiente" : "Terminada";
+    const badgeText = isCompleted ? "Terminada" : "Pendiente";
+    const badgeClass = isCompleted ? "badge bg-success" : "badge bg-danger";
 
     const card = document.createElement("div");
     card.className = `card ${cardClass} mb-3`;
@@ -41,11 +41,48 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
     // Add event listener for the checkbox to toggle active state
     const checkbox = card.querySelector(".toggle-active");
     const badge = card.querySelector(".badge");
-    checkbox.addEventListener("change", () => {
+    checkbox.addEventListener("change", async () => {
       const active = checkbox.checked;
       badge.className = `badge ${active ? "bg-success" : "bg-danger"}`;
-      badge.textContent = active ? "Pendiente" : "Terminada";
+      badge.textContent = active ? "Terminada" : "Pendiente";
       checkbox.nextElementSibling.textContent = `Marcar como ${active ? "Inactivo" : "Activo"}`;
+
+      const checkValorIsCompleted = $(`#checkTareaActiva_${id}`).is(':checked')
+
+      let datosUpdate = {
+        identificador: id,
+        campoIdentificador: "id_tarea",
+        valor: checkValorIsCompleted,
+        campoValor: "is_completed"
+      };
+
+      let updateIsCompleted = await putFetchData("ajaxcall/tarea.ajax.php?funct=updateCampoTarea",
+        [], datosUpdate
+      );
+
+      if (updateIsCompleted.success) {
+        Toastify({
+            text: "Tarea actualizada",
+            duration: 3000,
+            gravity: "top", // Posición: "top" o "bottom"
+            position: "right", // Posición: "left", "center" o "right"
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)", // Gradiente de color
+            stopOnFocus: true, // Detiene la animación cuando se pasa el mouse sobre la notificación
+            close: true, // Mostrar botón de cierre
+        }).showToast();
+      }
+      else {
+        Toastify({
+            text: "Error al completar la tarea",
+            duration: 3000,
+            gravity: "top", // Posición: "top" o "bottom"
+            position: "right", // Posición: "left", "center" o "right"
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc3a0)", // Gradiente de color
+            stopOnFocus: true, // Detiene la animación cuando se pasa el mouse sobre la notificación
+            close: true, // Mostrar botón de cierre
+        }).showToast();
+      }
+
     });
 
     const contenedorCars = document.getElementById(contenedor);
