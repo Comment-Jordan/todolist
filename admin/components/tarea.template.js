@@ -1,7 +1,7 @@
 function tareaCardTemplate(id, title, description, isCompleted = false, isActive = true, contenedor, fechaCreacion="", fechaActualizacion="") { 
-    const cardClass = isCompleted ? "bg-success text-white" : "bg-primary text-white";
-    const badgeText = isCompleted ? "Terminada" : "Pendiente";
-    const badgeClass = isCompleted ? "badge bg-success" : "badge bg-danger";
+    const cardClass = isCompleted == true ? "bg-success text-white" : "bg-primary text-white";
+    const badgeText = isCompleted == true ? "Terminada" : "Pendiente";
+    const badgeClass = isCompleted  == true ? "badge bg-success" : "badge bg-danger";
 
     const card = document.createElement("div");
     card.className = `card ${cardClass} mb-3`;
@@ -26,14 +26,14 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
             <div class="card-footer">
             <div class="d-flex flex-column align-items-center">
                 <div class="form-check">
-                <input id='checkTareaActiva_${id}' type="checkbox" class="form-check-input toggle-active" ${isCompleted ? "checked" : ""}>
+                <input id='checkTareaActiva_${id}' type="checkbox" class="form-check-input toggle-active" ${isCompleted == true ? "checked" : ""}>
                 <label class="form-check-label">
                     Tarea finalizada
                 </label>
                 </div>
                 <div class="d-flex justify-content-between gap-3">
                 <button class="btn btn-danger btn-delete mt-3" onClick='eliminarTarea(${id})'>Eliminar</button>
-                    <button class="btn btn-warning btn-delete mt-3" onClick='alternarTareaActiva(${id}, ${isActive})'>${isActive ? 'Mover a la papelera' : 'Restaurar'}</button>
+                    <button class="btn btn-warning btn-delete mt-3" onClick='alternarTareaActiva(${id}, ${isActive})'>${isActive == true ? 'Mover a la papelera' : 'Restaurar'}</button>
                     <button class="btn btn-success btn-delete mt-3" onClick='abrirDialogoEditar(${id})'>Editar</button>
                 </div>
             </div>
@@ -47,7 +47,7 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
     const badge = card.querySelector(".badge");
     checkbox.addEventListener("change", async () => {
       const active = checkbox.checked;
-      badge.className = `badge ${active ? "bg-success" : "bg-danger"}`;
+      badge.className = `badge ${active == true ? "bg-success" : "bg-danger"}`;
       badge.textContent = active ? "Terminada" : "Pendiente";
       //   checkbox.nextElementSibling.textContent = `Marcar como ${active ? "Inactivo" : "Activo"}`;
 
