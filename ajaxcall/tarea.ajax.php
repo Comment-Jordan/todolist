@@ -33,6 +33,10 @@ switch ($_GET["funct"]) {
         $ajaxTarea->deleteTarea();
     break;
 
+    case 'updateTarea':
+        $ajaxTarea->updateTarea();
+    break;
+
     default:
         echo "Ajax call not found";
     break;
@@ -182,6 +186,36 @@ class AjaxTarea
                 );
             }
             
+        }
+        else{
+            $respuesta = array(
+                "success" => false,
+                "msg" => "Faltan datos"
+            );
+        }
+
+        echo json_encode($respuesta);
+    }
+
+    public static function updateTarea(){        
+        if(isset($_GET["id_tarea"]) && isset($_GET["titulo"]) && isset($_GET["descripcion"])){
+            $tarea = new TareaController();
+            $updateTarea = $tarea->ctrUpdateTarea($_GET["id_tarea"], $_GET["titulo"], $_GET["descripcion"]);
+            
+            if($updateTarea == true){
+                $consultaTarea = $tarea->ctrGetTareaById($_GET["id_tarea"]);
+                $respuesta = array(
+                    "success" => true,
+                    "msg" => "Tarea actualizada",
+                    "data" => $consultaTarea
+                );            
+            }
+            else{
+                $respuesta = array(
+                    "success" => false,
+                    "msg" => "Error al actualizar tarea"
+                );
+            }
         }
         else{
             $respuesta = array(

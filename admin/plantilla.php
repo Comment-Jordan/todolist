@@ -135,7 +135,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- -------------------------------------------------------------------------- -->
         <!--                                COMPONENTS JS                               -->
         <!-- -------------------------------------------------------------------------- -->    
-        <script src="admin/components/tarea.template.js"></script>
+        <script src="admin/components/tarea.template.js"></script>        
     </body>
 
 </html>

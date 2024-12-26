@@ -12,13 +12,13 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
         <div class="card">
             <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
-                <span class="card-title">${title}</span>
+                <p id='idTituloTarea_${id}'>${title}</p>
                 <span class="badge ${badgeClass}">${badgeText}</span>
             </div>
             </div>
             <div class="card-body">
             <div class="card-description">
-                <p>${description}</p>
+                <p id='idDescripcionTarea_${id}'>${description}</p>
             </div>
             </div>
             <div class="card-footer">
@@ -31,6 +31,7 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
                 </div>
                 <button class="btn btn-danger btn-delete mt-3" onClick='alternarTareaActiva(${id}, 0)'>Mover a la papelera</button>
                 <button class="btn btn-danger btn-delete mt-3" onClick='eliminarTarea(${id})'>Eliminar</button>
+                <button class="btn btn-danger btn-delete mt-3" onClick='abrirDialogoEditar(${id})'>Editar</button>
             </div>
             </div>
         </div>

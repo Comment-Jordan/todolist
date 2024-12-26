@@ -43,4 +43,9 @@ class TareaController
     {
         return TareaModel::mdlDeleteTarea($id);
     }
+
+    public static function ctrUpdateTarea($id, $titulo, $descripcion)
+    {
+        return TareaModel::mdlUpdateTarea($id, $titulo, $descripcion);
+    }
 }

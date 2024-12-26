@@ -26,10 +26,27 @@
         </div>
         <div class="modal-footer">
             <button id="closeModalBtn" type="button" class="btn btn-primary">Cerrar</button>
-            <button id="guardarModalBtn" type="button" class="btn btn-primary" onclick="agregarTarea()">Guardar</button>
+            <button type="button" class="btn btn-primary" onclick="agregarTarea()">Guardar</button>
         </div>
     </dialog>
 </div>
+
+<!-- Dialog -->
+<dialog id="customDialog">
+    <div class="modal-body">
+        <strong><p>Titulo</p></strong>
+        <input id="editTitulo"  type="text" class="form-control" required>
+
+        <strong><p>Descripcion</p></strong>
+        <textarea id="editDescripcion" class="form-control" rows="3" required></textarea>
+
+        <input type="hidden" id="editIdTarea">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="cerrarDialogoEditar()">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="editarTarea()">Guardar cambios</button>
+    </div>
+</dialog>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

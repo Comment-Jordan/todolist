@@ -133,4 +133,22 @@ class TareaModel
 
         $stmt = null;
     }   
+
+    public static function mdlUpdateTarea($id, $titulo, $descripcion){        
+        $stmt = Conexion::conectar()->prepare(
+            "UPDATE tarea
+            SET titulo = :titulo, descripcion = :descripcion
+            WHERE id_tarea = :id_tarea"
+        );
+
+        $stmt->bindParam(":id_tarea", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":titulo", $titulo, PDO::PARAM_STR);
+        $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+
+        return $stmt->execute();
+
+        //$stmt->close();
+
+        $stmt = null;        
+    }
 }

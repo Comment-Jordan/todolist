@@ -115,8 +115,19 @@ async function agregarTarea(){
         }).showToast();
     }
     else {
-        alert(tarea.msg);
+        Toastify({
+            text: "Tarea agregada",
+            duration: 3000,
+            gravity: "top", // Posición: "top" o "bottom"
+            position: "right", // Posición: "left", "center" o "right"
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc3a0)", // Gradiente de color
+            stopOnFocus: true, // Detiene la animación cuando se pasa el mouse sobre la notificación
+            close: true, // Mostrar botón de cierre
+        }).showToast();
     }
+
+    const newTaskModal = document.getElementById('newTaskModal');
+    newTaskModal.close();
 }
 
 async function eliminarTarea(id){
@@ -169,3 +180,54 @@ async function eliminarTarea(id){
         }
     });
 }
+
+async function editarTarea(){
+    let datosTarea = { 
+        id_tarea: $("#editIdTarea").val(),
+        titulo: $("#editTitulo").val(),
+        descripcion: $("#editDescripcion").val()
+    };        
+
+    let tarea = await putFetchData("ajaxcall/tarea.ajax.php?funct=updateTarea", 
+        [], datosTarea
+    );
+    
+    if (tarea.success) {        
+        cerrarDialogoEditar();
+        Toastify({
+            text: "Tarea actualizada",
+            duration: 3000,
+            gravity: "top", // Posición: "top" o "bottom"
+            position: "right", // Posición: "left", "center" o "right"
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)", // Gradiente de color
+            stopOnFocus: true, // Detiene la animación cuando se pasa el mouse sobre la notificación
+            close: true, // Mostrar botón de cierre
+        }).showToast();
+
+        $("#idTituloTarea_" + datosTarea.id_tarea).text(datosTarea.titulo);
+        $("#idDescripcionTarea_" + datosTarea.id_tarea).text(datosTarea.descripcion);
+    }
+    else {
+        Toastify({
+            text: "Error al actualizar la tarea",
+            duration: 3000,
+            gravity: "top", // Posición: "top" o "bottom"
+            position: "right", // Posición: "left", "center" o "right"
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc3a0)", // Gradiente de color
+            stopOnFocus: true, // Detiene la animación cuando se pasa el mouse sobre la notificación
+            close: true, // Mostrar botón de cierre
+        }).showToast();
+    }
+}
+
+function abrirDialogoEditar(id){    
+    const dialog = document.getElementById('customDialog');
+    $("#editIdTarea").val(id);
+    dialog.showModal();
+}
+
+function cerrarDialogoEditar(){
+    const dialog = document.getElementById('customDialog');
+    dialog.close();
+}
+
