@@ -52,7 +52,7 @@ async function alternarTareaActiva(id, isActive) {
     let datosUpdate = {
         identificador: id,
         campoIdentificador: "id_tarea",
-        valor: isActive,
+        valor: !isActive,
         campoValor: "is_activo"
     };
 
@@ -68,7 +68,7 @@ async function alternarTareaActiva(id, isActive) {
         }, 500);
 
         Toastify({
-            text: "Tarea movida a la papelera",
+            text: "Tarea actualizada",
             duration: 3000,
             gravity: "top", // Posición: "top" o "bottom"
             position: "right", // Posición: "left", "center" o "right"

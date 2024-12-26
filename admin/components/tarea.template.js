@@ -33,7 +33,7 @@ function tareaCardTemplate(id, title, description, isCompleted = false, isActive
                 </div>
                 <div class="d-flex justify-content-between gap-3">
                 <button class="btn btn-danger btn-delete mt-3" onClick='eliminarTarea(${id})'>Eliminar</button>
-                    <button class="btn btn-warning btn-delete mt-3" onClick='alternarTareaActiva(${id}, 0)'>Mover a la papelera</button>
+                    <button class="btn btn-warning btn-delete mt-3" onClick='alternarTareaActiva(${id}, ${isActive})'>${isActive ? 'Mover a la papelera' : 'Restaurar'}</button>
                     <button class="btn btn-success btn-delete mt-3" onClick='abrirDialogoEditar(${id})'>Editar</button>
                 </div>
             </div>
