@@ -9,7 +9,7 @@
         <!-- Cards go here -->
     </div>
 
-    <dialog id="newTaskModal">
+    <dialog id="newTaskModal" class="w-50vw">
         <div class="modal-header">
             <h5 class="modal-title">Crear Nueva Tarea</h5>
         </div>
@@ -25,25 +25,32 @@
                 </div>
             </form>
         </div>
-        <div class="modal-footer">
-            <button id="closeModalBtn" type="button" class="btn btn-primary">Cerrar</button>
+        <div class="modal-footer gap-3">
+            <button id="closeModalBtn" type="button" class="btn btn-secondary">Cerrar</button>
             <button type="button" class="btn btn-primary" onclick="agregarTarea()">Guardar</button>
         </div>
     </dialog>
 </div>
 
 <!-- Dialog -->
-<dialog id="customDialog">
+<dialog id="customDialog" class="w-50vw">
+    <div class="modal-header">
+        <h5 class="modal-title">Editar Tarea</h5>
+    </div>
     <div class="modal-body">
-        <strong><p>Titulo</p></strong>
-        <input id="editTitulo"  type="text" class="form-control" required>
+        <div class="mb-3">
+            <label for="editTitulo" class="form-label>">Título</label>
+            <input id="editTitulo"  type="text" class="form-control" required>
+        </div>
 
-        <strong><p>Descripcion</p></strong>
-        <textarea id="editDescripcion" class="form-control" rows="3" required></textarea>
+        <div class="mb-3">
+            <label for="editDescripcion" class="form-label">Descripción</label>
+            <textarea id="editDescripcion" class="form-control" rows="3" required></textarea>
+        </div>
 
         <input type="hidden" id="editIdTarea">
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer gap-3">
         <button type="button" class="btn btn-secondary" onclick="cerrarDialogoEditar()">Cerrar</button>
         <button type="button" class="btn btn-primary" onclick="editarTarea()">Guardar cambios</button>
     </div>
